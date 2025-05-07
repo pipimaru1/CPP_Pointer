@@ -1,5 +1,6 @@
-﻿// Pinter_Array.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
-//
+﻿//デバッグモードでビルドしてください
+//デバッガでF10で1行ずつ確認してください
+
 
 #include <iostream>
 
@@ -32,6 +33,12 @@ int main()
     std::cout << "ARRAY0 : " << POINTER << std::endl;
     std::cout << "POINTER: " << POINTER << std::endl;
     
+    // 配列とポインタの違い（簡易）
+    // 配列は固定長で、sizeof(ARRAY0) は全体のバイト数になる
+    // ポインタはサイズは常に 4 or 8（32bit or 64bit 環境で異なる）
+    std::cout << "sizeof(ARRAY0) : " << sizeof(ARRAY0) << std::endl;
+    std::cout << "sizeof(POINTER): " << sizeof(POINTER) << std::endl;
+
     //値を見てみる
     std::cout << "POINTER[0]: " << POINTER[0] << std::endl;
     std::cout << "POINTER[1]: " << POINTER[1] << std::endl;
@@ -39,12 +46,21 @@ int main()
     std::cout << "POINTER[3]: " << POINTER[3] << std::endl;
     std::cout << "POINTER[4]: " << POINTER[4] << std::endl;
 
-    //ポインタ変数に配列のアドレスを代入
+    //ポインタの加算
+    std::cout << "ポインタの加算: POINTER + 1 = " << (POINTER + 1) << std::endl;
+    std::cout << "値: *(POINTER + 1) = " << *(POINTER + 1) << std::endl;
+    
+    //+1はポインタのサイズ分進むので、ポインタのサイズが4バイトなら+4バイト進む
+    //+1が+20くらいでも値は出で来るが、どんな値かは分らない。
+    // +1を100000とか大きな数にすると、スタック領域外になって、ランタイムエラーになる可能性が高い。
+
+    //ポインタ変数に別の配列のアドレスを代入
     std::cout << "\nPOINTER = ARRAY1\n";
     POINTER = ARRAY1;
     // アドレスを表示する。POINTERとARRAY1は同じアドレスを指しているはず。
     std::cout << "ARRAY1 : " << POINTER << std::endl;
     std::cout << "POINTER: " << POINTER << std::endl;
+    //ポインタは同じ「POINTER」だが、差している差しているアドレスを変えたので違う値が出で来ることを確認
     //値を見てみる
     std::cout << "POINTER[0]: " << POINTER[0] << std::endl;
     std::cout << "POINTER[1]: " << POINTER[1] << std::endl;
@@ -60,6 +76,7 @@ int main()
     //20バイトは16進数で0x14
     std::cout << "ARRAY2 : " << POINTER << std::endl;
     std::cout << "POINTER: " << POINTER << std::endl;
+    //ポインタは同じ「POINTER」だが、差している差しているアドレスを変えたので違う値が出で来ることを確認
     //値を見てみる
     std::cout << "POINTER[0]: " << POINTER[0] << std::endl;
     std::cout << "POINTER[1]: " << POINTER[1] << std::endl;
@@ -141,6 +158,7 @@ int main()
     std::cout << "POINTER: " << POINTER << std::endl;
 
     delete[] POINTER; // 確保したメモリを解放する
+    POINTER = nullptr; // ポインタをNULLにする nullにしなくても良いが、NULLにしておく
 
     std::cout << "\nPOINTER = new int[SZ] 変数で動的メモリ確保\n";
     size_t SZ = 20;
