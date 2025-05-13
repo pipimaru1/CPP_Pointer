@@ -28,14 +28,21 @@ int main()
     // アドレスを表示することは問題ない。
 
     std::cout << "\nPOINTER = ARRAY0\n";
-    POINTER = ARRAY0; // ポインタ変数に配列のアドレスを代入
+
+    // ポインタ変数に配列のアドレスを代入
+    POINTER = ARRAY0; 
+
     //アドレスを表示する。POINTERとARRAY0は同じアドレスを指しているはず。
     std::cout << "ARRAY0 : " << POINTER << std::endl;
     std::cout << "POINTER: " << POINTER << std::endl;
     
     // 配列とポインタの違い（簡易）
     // 配列は固定長で、sizeof(ARRAY0) は全体のバイト数になる
-    // ポインタはサイズは常に 4 or 8（32bit or 64bit 環境で異なる）
+    // ポインタはサイズは、1文字当たり 4 or 8（32bit or 64bit 環境で異なる。)
+	// ↑プログラミング上いつも問題に直面するわけではないが、APIやSQLなどで意識するシーンは出てくる
+	// pythonはこのあたり意識しなくても良いので楽だが、想定外のエラーが出ることもある。
+    // 特にプログラムを配布するときは問題が出やすい。
+    // C++ならその点は非常に手堅く、問題がでることは非常に少ない。
     std::cout << "sizeof(ARRAY0) : " << sizeof(ARRAY0) << std::endl;
     std::cout << "sizeof(POINTER): " << sizeof(POINTER) << std::endl;
 

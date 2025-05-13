@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_AReference", "CPP_ARefe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_Array", "CPP_Array\CPP_Array.vcxproj", "{708314C1-97E0-44FD-A850-8884B0669FD2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_Pointer_Array", "CPP_Pointer_Array\CPP_Pointer_Array.vcxproj", "{7FB0019F-EDD5-4DFD-AE04-DA6E081DBCD9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pinter_Array", "Pinter_Array\Pinter_Array.vcxproj", "{7FB0019F-EDD5-4DFD-AE04-DA6E081DBCD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
