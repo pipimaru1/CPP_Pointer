@@ -14,18 +14,15 @@ int main()
 	std::cout << "\n///////////////////////////////////////////\n";
 	printVector(vec);
 
-	//_getch(); // ユーザーがキーを押すまで待機
 	std::cout << "\n///////////////////////////////////////////\n";
 	std::cout << "関数に値渡しを指定した場合\n";
  	AddDataVector_Val(vec, 5);
 	printVector(vec);
 
-	//_getch(); // ユーザーがキーを押すまで待機
 	std::cout << "\n///////////////////////////////////////////\n";
 	std::cout << "関数に参照渡しを指定した場合\n";
 	AddDataVector_Addr(vec, 5);
 	printVector(vec);
-
 }
 
 

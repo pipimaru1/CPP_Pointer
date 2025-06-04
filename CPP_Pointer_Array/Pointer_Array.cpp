@@ -109,7 +109,7 @@ int main()
     //{ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 };
     // アドレスを表示する。POINTERとARRAY2は「ちょうど」20バイト離れたアドレスを指しているはず。
     //20バイトは16進数で0x14
-    std::cout << "ARRAY2 : " << POINTER << std::endl;
+    std::cout << "ARRAY2 : " << ARRAY2 << std::endl;
     std::cout << "POINTER: " << POINTER << std::endl;
     //値を見てみる
     std::cout << "POINTER[0]: " << POINTER[0] << std::endl;
