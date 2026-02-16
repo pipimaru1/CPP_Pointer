@@ -44,33 +44,90 @@
 
 int main()
 {
+    int INT_A = 12345678; // 整数型の変数INT_Aを宣言し、値12345678で初期化します。  
+    int* PT_INT;
+    void* PT_VOID;
+    char* PT_STR;
+    char STRING_X[6] = "Hello";                         // 文字列リテラル "Hello" は null 終端されているため、配列のサイズは 6 になります。
+    char STRING_Y[5] = { 'H', 'e', 'l', 'l', 'o' };     // 文字列リテラルを使用せずに、文字の配列を初期化しています。
+
+    PT_INT = &INT_A;
+    PT_VOID = &INT_A;
+    std::cout << "INT_A    = " << INT_A << std::endl;    // 値が表示されるはず。
+    std::cout << "PT_INT   = " << PT_INT << std::endl;   // メモリのアドレスが表示されるはず。PT_INTはINT_Aのアドレスを指しているので、INT_Aのアドレスが表示されるはずです。
+    std::cout << "*PT_INT  = " << *PT_INT << std::endl;  // *PT_INTはINT_Aの値を表示するはずです。
+    std::cout << "PT_VOID  = " << PT_VOID << std::endl;  // メモリのアドレスが表示されるはず。PT_VOIDはINT_Aのアドレスを指しているので、INT_Aのアドレスが表示されるはずです。
+    std::cout << "*PT_VOID = " << *((int*)PT_VOID) << std::endl; // 用する前に適切な型にキャストする必要がります。INT_Aの値が表示されるはずです。
+    std::cout << "&PT_VOID = " << &PT_VOID << std::endl;  // PT_VOIDのアドレスが表示されるはずです。アドレス値のアドレス。
+
+	PT_STR = STRING_X; // 配列名は配列の先頭要素のアドレスを表すので、PT_STRにSTRING_Xを代入することで、PT_STRはSTRING_Xの先頭要素のアドレスを指すようになります。
+    PT_VOID = PT_STR    ;
+
+	std::cout << "STRING_X = " << STRING_X << std::endl;
+	std::cout << "PT_STR   = "<< PT_STR << std::endl;  // PT_STRはSTRING_Xの先頭要素のアドレスを指しているので、STRING_Xの内容が表示されるはずです。
+	std::cout << "PT_VOID  = "<< PT_VOID << std::endl; // PT_VOIDはPT_STRのアドレスを指しているので、STRING_Xの内容が表示されるはずです。
+
+    PT_STR = STRING_Y; // 配列名は配列の先頭要素のアドレスを表すので、PT_STRにSTRING_Xを代入することで、PT_STRはSTRING_Xの先頭要素のアドレスを指すようになります。
+    PT_VOID = PT_STR;
+
+	std::cout << "STRING_Y = " << STRING_Y << std::endl; // STRING_Yはnull終端されていないので、文字列の最後にゴミデータが入っている可能性があります。表示される内容は環境によって異なります。
+	std::cout << "PT_STR   = " << PT_STR << std::endl;   // PT_STRはSTRING_Yの先頭要素のアドレスを指しているので、STRING_Yの内容が表示されるはずですが、null終端されていないので、文字列の最後にゴミデータが入っている可能性があります。表示される内容は環境によって異なります。
+	std::cout << "PT_VOID  = " << PT_VOID << std::endl;  // PT_VOIDはPT_STRのアドレスを指しているので、STRING_Yの内容が表示されるはずですが、null終端されていないので、文字列の最後にゴミデータが入っている可能性があります。表示される内容は環境によって異なります。
+
+    std::cout << "PT_STR = " << PT_STR +   100 << std::endl; // 何が出るかなドキドキ
+    std::cout << "PT_STR   = " << PT_STR +  1000 << std::endl; // 何が出るかなドキドキ
+	std::cout << "PT_STR   = " << PT_STR + 10000 << std::endl; // スタックを越えている可能性があるので、多分例外
+
+    return 0;
+}
+    
+int _main()
+{
     int VALUE_X;
     int VALUE_Y;
-    int* PT; 
+	char STRING_X[6] = "Hello";                         // 文字列リテラル "Hello" は null 終端されているため、配列のサイズは 6 になります。
+	char STRING_Y[5] = { 'H', 'e', 'l', 'l', 'o' };     // 文字列リテラルを使用せずに、文字の配列を初期化しています。
+                                                       // こちらは null 終端されていないため、配列のサイズは 5 になります。
+
+    int* PT_INT;
+    char* PT_STR;
+    void* PT_VOID;
     // ここでは「 * 」はポインタ型の変数を宣言するための記号です。
 
     VALUE_X = 4410;
-    PT = &VALUE_X; 
-   
+    PT_INT = &VALUE_X;
+	PT_STR = STRING_X; // 配列名は配列の先頭要素のアドレスを表すので、PT_STRにSTRING_Xを代入することで、PT_STRはSTRING_Xの先頭要素のアドレスを指すようになります。
+
     std::cout<< "PT = &VALUE_X; // ポインタ変数PTにVALUE_Xのアドレスを代入" << std::endl;
     std::cout << ESCGRN;
 
+    PT_VOID = &VALUE_X; // void*型のポインタ変数VOID_PTにVALUE_Xのアドレスを代入。void*は任意の型のポインタを格納できる特殊なポインタ型です。
+    PT_VOID = STRING_X; // void*型のポインタ変数VOID_PTにSTRING_Xのアドレスを代入。これも問題ありません。void*は任意の型のポインタを格納できるため、異なる型のアドレスを代入することができます。
+    PT_VOID = &STRING_X; // void*型のポインタ変数VOID_PTにSTRING_Xのアドレスを代入。これも問題ありません。void*は任意の型のポインタを格納できるため、異なる型のアドレスを代入することができます。
+    PT_VOID = STRING_Y; // void*型のポインタ変数VOID_PTにSTRING_Yのアドレスを代入。これも問題ありません。void*は任意の型のポインタを格納できるため、異なる型のアドレスを代入することができます。
+	// void*型のポインタは型指定(データサイズ)が未定義のため、ウォッチでVOID_PTの値を確認しても、
+    // アドレスは表示されますが、そこにあるデータの内容は表示されません。
+    // void*型のポインタを使用する場合、特定の型にキャストして使用する必要があります。
+    size_t SZ_INT = sizeof(PT_INT);
+    PT_VOID = &VALUE_X; // void*型のポインタ変数VOID_PTにVALUE_Xのアドレスを代入。void*は任意の型のポインタを格納できる特殊なポインタ型です。
+    size_t SZ_VOID = sizeof(PT_VOID);
+    
     //これは普通の「値」
     std::cout << "VALUE_Xの値           : " << VALUE_X << std::endl;
 
     //ポインタのアドレスになります。
-    std::cout << "PTの値(アドレス)      : " << PT << std::endl;
+    std::cout << "PTの値(アドレス)      : " << PT_INT << std::endl;
 
     //この「 * 」は ポインタの差すメモリの「値」を出すための間接参照演算子としての使い方になります。
-    VALUE_Y = *PT; 
+    VALUE_Y = *PT_INT;
     std::cout << "PTの差すメモリにある値: " << VALUE_Y << std::endl;
 
     std::cout << "ポインタを使った代入操作" << std::endl;
     //ここでも「 * 」は ポインタの差すメモリの「値」を出すための間接参照演算子としての使い方になります。
-    *PT = 196809;
+    *PT_INT = 196809;
 
     //ポインタの差すメモリの「値」になります。
-    std::cout << "PTの差すメモリにある値: " << *PT << std::endl;
+    std::cout << "PTの差すメモリにある値: " << *PT_INT << std::endl;
     //これは普通の整数の「値」ポインタの差すメモリに代入されたので値が変わっているはず。
     std::cout << "VALUE_Xの値           : " << VALUE_X << std::endl;
     std::cout << ESCDEF << std::endl;
